@@ -1,0 +1,69 @@
+Things to work on
+//Indicates most important
+***indicates completion
+
+1/5/16
+HealthPot and RepairKit need to delete out of inventory when used
+	adjust the class methods for each. might be correct but I'm not sure
+Player needs ability to pick up health and repair kits
+	main(68-71) and items(110-114) although items needs work
+Link up player.repair and player.drink with inventory access menu
+Should they be able to pick up armor and weapons?
+	***Player can pick up any item, just need way to change armor or weapon from inventory
+Player method to swap equipment from inventory
+	Added main(70-90) to look into inventory
+	Need an inventory control menu
+Do I need a max inventory size? Set by weight or volume or number of items?
+	***Can't pick up anything if inventory.length >=8 (see main(69)
+Should durability loss scale with dungeon/monster level?
+	***scaled to .05* monsterlevel monster(34)
+Need to update room creation to delete room names from initial setup
+	***floorPlan(202)
+Set frequency of health and repair kits, Include them in the Room creation
+	Included when there isn't a monster added to a room.
+    Remove random monster addition to rooms due to UnionF mixing rooms 
+//Have to create menu system for Inventory.
+	several fixes above require it(main(67-90) and items)
+Fix movePlayer method to work with staircase to next floorPlan
+Add next floor Creation when player tries to move up a floor
+Add floor level to Look around function in Main.js
+	i.e. dungeon, hall, etc.
+Add menu system to replace door print out 
+Fix combat test due to dmg reduction from armor changes
+    ***fixed
+Fix runaway due to .length issue
+    ***modified Items.random to accomadate a min,max of 0,0
+Add durability to weapon and armor printout
+
+1/15/16
+HealthPot and RepairKit need to delete out of inventory when used
+    ***Fixed, added delete function to inventory menu
+Fix Health and repair kits printout when they exist in the Room.content
+    ***Fixed with Room.toStringContent
+Set room names and exits
+Fix manageInventory if inventory is empty
+	***Fixed
+Fix Swap equipment in main.js, bland text needs to denote the item is on the ground
+Pick up in main needs text formating for items
+	***fixed
+When Main refreshes after an action, I don't want to display the room and exits
+if monsters health drops below 0, need to end combat
+    ***ends correctly now
+Fix Pick up in main(splice in items)
+	Think its fixed
+    ***now fixed, pots and repair kits needed to be arrays
+Fix Look around in main to include Health, equipment
+	**done
+Add durability loss to weapons
+Make Potions and Repair kits arrays in rooms in floorPlan
+    ***fixed
+Look into embeding game into Website
+
+1/16/16
+When swapping equipement drop equiped into inventory
+fix move levels
+
+3/19
+Fix staircase problems
+Fix Room names generator, splice is cutting up the array or something
+ 

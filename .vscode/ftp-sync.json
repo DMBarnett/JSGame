@@ -1,0 +1,15 @@
+{
+    "remotePath": "./",
+    "host": "192.168.2.2",
+    "username": "David",
+    "password": "CocaCola8891",
+    "port": 21,
+    "protocol": "ftp",
+    "uploadOnSave": true,
+    "passive": false,
+    "debug": false,
+    "ignore": [
+        "\\.vscode",
+        "\\.git"
+    ]
+}

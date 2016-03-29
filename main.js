@@ -27,7 +27,7 @@ while(playerInput != 'quit'){
 	}
     console.log('You are currently in the ' + gameMap[player1.location].roomName);
 	console.log('You can exit the room through the following: ' + gameMap[player1.location].toStringExit());
-	//console.log(''+ gameMap[player1.location].toStringContent());
+	console.log(''+ gameMap[player1.location].toStringContent());
 	console.log('What would you like to do? You can Move, Attack, Pick up, Swap equipement, manage Inventory, or Look around.');
 	var inputWhileLoop = readlineSync.question('>[]');
 	switch(Player.firstLetter(inputWhileLoop)){
@@ -86,8 +86,9 @@ while(playerInput != 'quit'){
             console.log('You currently have the following items equiped.');
             console.log('' + player1.equipedweapon);
             console.log('' + player1.equipedarmor);
+            console.log('You have '+player1.experience+' experience.');
             console.log('You are in the '+gameMap[player1.location].roomName+' in the '+player1.castleLevel+' of the castle.');
-            // needs to console.log(room, contents, exits, castleArea)
+            console.log(''+ gameMap[player1.location].toStringContent());
             break;
 		case 'i':
             var workingItem = InventoryMenu.choiceMenu(player1.inventory, console.log, readlineSync);

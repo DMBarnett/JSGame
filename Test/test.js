@@ -17,6 +17,7 @@ var PlayerObject = require('../player');
 var GameMap = require('../Room.js').gameMap;
 var FloorPlan = require('../floorPlan.js');
 var ManageInventory = require('../manageInventory.js');
+var PlayerFile = require('../player.js');
 
 var weaponNames = ['Hammer', 'Sword', 'Mace', 'Axe'];
 var armorNames = ['Steel Breastplate', 'Leather Breastplate', 'Iron Breastplate'];
@@ -81,7 +82,6 @@ describe('FinalFantasy0.5', function(){
 		var player3 = new Player('John', 'Warrior');
 		var monster3 = new Monster('Bill', 'dungeon', 10);
 		var randMock = {random:function(){return 1}};
-		//console.log(player3);
 		Combat.gainexp(monster3, player3, randMock);
 		assert.equal(player3.experience, 0);
 		assert.equal(player3.level, 2);
@@ -94,10 +94,6 @@ describe('FinalFantasy0.5', function(){
 		var monster3 = new Monster('B', 'hall', 2);
 		var monster4 = new Monster('C', 'battlements', 3);
 		var monster5 = new Monster('D', 'throne', 4);
-		//console.log(monster2);
-		//console.log(monster3);
-		//console.log(monster4);
-		//console.log(monster5);
 	})
 	it('should do combat', function(){
 		var monster1 = new Monster('A', 'dungeon', 2);
@@ -151,18 +147,22 @@ describe('FinalFantasy0.5', function(){
         assert.equal(player1.location, 16);
     })
     it('should move to the next floor', function(){
+        //need to update this test
         RoomModule.clearMap();
         var player1 = new Player('David', 'r');
-        var room1 = new Room(17, 'dungeon', null, null, []);
+        var room1 = new Room(11, 'dungeon', null, null, [], 'two');
         room1.exit['StairCase'] = null;
         room1.staircase = true;
-        player1.location = 17;
-        FloorPlan.rooms.roomTotal = -1;
+        player1.location = 11;
+        FloorPlan.rooms.roomTotal = 12;
         var fakeReadLine = 'Staircase';
-        PlayerObject.movePlayer(player1, fakeReadLine);
-        //console.log(RoomModule.gameMap);
+        console.log(player1.location, player1.castleLevel);
+        PlayerFile.movePlayer(player1, fakeReadLine);
+        console.log(RoomModule.gameMap);
+        console.log(player1);
+        console.log(FloorPlan.rooms.roomTotal);
         assert.deepEqual(player1.castleLevel, 'hall');
-        assert.deepEqual(player1.location, 0);
+        assert.deepEqual(player1.location, 12);
     })
     it('should use and delete health Potions from inventory', function(){
         var player1 = new Player('David', 'r');

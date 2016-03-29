@@ -120,7 +120,6 @@ var count = 0;//allows for testing
 function randomizeMSTDungeon(area){
   var newMap = new Graph(false);
   var generated = roomGenerator(area);
-  //sortable = []; out for testing
   //sort using generated.adjList
   for(var i = 0; i < Object.keys(generated.adjList).length; i++ ){
     for (var each in generated.adjList[i]){
@@ -152,10 +151,6 @@ function randomizeMSTDungeon(area){
   return newMap;
 }
 
-
-//var ha = randomizeMSTDungeon('battlements');
-//console.log(ha);
-
 function createMonster(area, level){
 	var name = Monster.monsterName[Items.randy(0, (Monster.monsterName.length)-1)];
 	return new Monster.Monster(name, area, level);
@@ -170,8 +165,7 @@ var castleArea = {
 
 function randomExitName(){
 	var namesOfExits = ['Cupboard', 'Door', 'Portal', 'Window', 'Secret Dresser Drawer'];
-  //rewrite with cutouts for convertToRooms
-	return namesOfExits[Items.randy(0,namesOfExits.length)]; 
+	return namesOfExits[Items.randy(0,namesOfExits.length-1)]; 
 }
 var rooms = {};
 rooms['roomTotal'] = 0;//will need to increase eachtime a room is created
@@ -211,24 +205,15 @@ function convertToRooms(area){
             content = [new Items.RepairKit()];
         }
     }
-    //need to refine the room names, splices off the ends of the array so rooms dont get names
-    var randomRoomNameIndex = Items.randy(0, castleRoomNames[area].length); 
-    
+    var randomRoomNameIndex = Items.randy(0, castleRoomNames[area].length-1); 
     var roomName = castleRoomNames[area][randomRoomNameIndex];
     castleRoomNames[area].splice(randomRoomNameIndex, 1); 
     exitSet.push(new Room.Room(rooms.roomTotal, area, null, null, content, roomName));
   }
   var finalRoom = DijkstrasAlgorithm.dijkstra(newGameMap, startingRoom);
-  //console.log(startingRoom);
-  //console.log(exitSet);
-  //console.log(newGameMap.adjList);
-  //console.log(i, rooms.roomTotal, startingRoom, 'h');
-  //console.log(rooms.roomTotal);
   var longestPath = Object.keys(finalRoom[0]).reduce(function(a, b){ return finalRoom[0][a] > finalRoom[0][b] ? a : b });
-  //console.log(Room.gameMap);
   for(var i = 0; i < rooms.roomTotal; i++){
     for(var j in newGameMap.adjList[i]){
-      //console.log(i, rooms.roomTotal, startingRoom);
       Room.gameMap[i+startingRoom].exit[randomExitName()] = exitSet[j-startingRoom].id;
       if(i === Number(longestPath)){
         Room.gameMap[i].staircase = true;
@@ -236,7 +221,7 @@ function convertToRooms(area){
       }
     }
   }
-  //console.log(Room.gameMap);
+  console.log(Room.gameMap);
   return newGameMap;
 }
 

@@ -54,8 +54,6 @@ function clearMap(){
         delete gameMap[each];
     }
 }
-//var myRoom = new Room(1, 'hall', {North:2});
-//var livingRoom = new Room(2, 'hall', {South:1, North:3});
 
 module.exports={
 	Room:Room,

@@ -5,6 +5,7 @@ var readLineSync = require('readline-sync');
 var Combat = require('./combat.js');
 var FloorPlan = require('./floorPlan.js');
 var Room = require('./Room.js');
+var Monster = require('./monster.js');
 
 class Player{
 	constructor(name, type){
@@ -12,8 +13,7 @@ class Player{
 		this.name = name;
 		this.type = type;
 		this.level = 1;
-        
-		this.experience = 0;
+        this.experience = 0;
 		this.equipedweapon = new items.StarterWeapon();
 		this.equipedarmor = new items.StarterArmor();
 		//immediatly called function using()(type);
@@ -53,7 +53,6 @@ class Player{
 		})();
 		console.log('You did ' + this.damage + ' damage to the ' + target.name);
 		target.baseHealth-=this.damage;
-		//new console.log below might not work
 		console.log('The '+ target+"'s health is now "+ target.baseHealth);
 	}
 	toString(){
@@ -62,7 +61,6 @@ class Player{
 	}
     
 }
-
 
 function firstLetter(wordHere){
 	return (wordHere.charAt(0).toLowerCase());
@@ -80,15 +78,17 @@ function levelSwitch(player1){
 }
 
 function movePlayer(player1, moveTo){
-    //console.log(Room.gameMap[player1.location]);
     if(moveTo === 'StairCase' && player1.castleLevel === 'throne' && Room.gameMap[player1.location].id > 38){
-        Room.gameMap[FloorPlan.rooms.roomTotal] = new Room.Room(Room.roomTotal, 'throne', null, null, ,'Throne Room');
+        var boss = new Monster.Monster('Dracula', 'throne', 5);
+        console.log(boss);
+        Room.gameMap[FloorPlan.rooms.roomTotal] = new Room.Room(Room.roomTotal, 'throne', null, null, [boss],'Throne Room');
         movePlayer(player1, FloorPlan.rooms.roomTotal);
     }
     if(moveTo === 'StairCase' && Room.gameMap[player1.location].exit.StairCase === null){
         var nextRoom = FloorPlan.rooms.roomTotal;
         Room.gameMap[player1.location].exit.StairCase = nextRoom;
 		levelSwitch(player1);
+        console.log(player1.castleLevel);
 		FloorPlan.convertToRooms(player1.castleLevel);
         console.log(Room.gameMap);
         Room.gameMap[nextRoom].exit['Downstairs'] =  player1.location;
@@ -96,8 +96,6 @@ function movePlayer(player1, moveTo){
     }
     if(moveTo in gameMap[player1.location].exit){
         player1.location = gameMap[player1.location].exit[moveTo];
-        //console.log('You move to ' + gameMap[player1.location].id);
-        //console.log(gameMap[player1.location].toStringContent());
     }
 }
 
@@ -113,8 +111,6 @@ function playerAction(player1){
 		}
 	}
 }
-
-var player1 = new Player('David', 'w', items.axeStarter, items.armorStarter);
 
 module.exports={
 	Player:Player,

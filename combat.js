@@ -72,7 +72,6 @@ function fightMonster(target, character, readLineSync){
 	}
 }
 
-
 function dropItem(target, character, readLineSync){
     var content = Room.gameMap[character.location].content;
     content.push(target.dropable);
@@ -84,9 +83,6 @@ function dropItem(target, character, readLineSync){
     }
 }
 
-
-
-
 module.exports={
 	combat:combat,
 	gainexp:gainexp,
@@ -94,8 +90,3 @@ module.exports={
     dropItem:dropItem,
     fightMonster:fightMonster
 }
-
-
-    /*console.log(Room.gameMap[character.location].content);
-    console.log('The monster dropped something.\n' + target.dropable);
-    console.log('You currently have some items equiped. \n' + character.equipedarmor + ' and \n' + character.equipedweapon);*/

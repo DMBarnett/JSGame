@@ -1,5 +1,4 @@
 'use strict'
-
 var readlineSync = require('readline-sync');
 var Room = require('./Room.js');
 var monster = require('./monster.js');
@@ -22,20 +21,6 @@ function newPlayer(){
 	}
 }
 
-function randomExitName(){
-	var namesOfExits = ['Cupboard', 'Door', 'Portal', 'Window'];
-	return namesOfExits[items.randy(0,namesOfExits.length+1)]; 
-}
-
-function createMonster(castleArea, level){
-	var name = monster.monsterName[items.randy(0, (monster.monsterName.length)-1)];
-	return new monster.Monster(name, castleArea, level);
-}
-
 module.exports={
 	newPlayer:newPlayer,
-	createMonster:createMonster
 }
-
-//where do I need to place this to work?
-//needs to create each level as player moves up

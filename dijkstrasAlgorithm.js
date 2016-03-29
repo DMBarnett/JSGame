@@ -2,7 +2,6 @@
 //Dijkstra's algorithm
 var PriorityQ = require('algorithms').DataStructures.PriorityQueue;
 
-var sampleGraph = {"directed":false,"adjList":{"0":{"2":658,"8":815},"1":{"6":815},"2":{"0":658,"4":755},"3":{"6":728},"4":{"2":755,"5":837},"5":{"4":837},"6":{"1":815,"3":728,"8":731},"7":{"8":774},"8":{"0":815,"6":731,"7":774,"9":711},"9":{"8":711}},"vertices":{}}
 function dijkstra(graph, source){
 	for(var each in graph.adjList){
 		for(var things in graph.adjList[each]){

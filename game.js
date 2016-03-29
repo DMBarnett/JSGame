@@ -17,20 +17,7 @@ class Boss{
 	}
 }
 
-//graph or grid for MUD
-//Win condition
-//Test for key for next level
-
-
-
 module.exports={
 	area:area,
 	Boss:Boss
 }
-
-//create game async loop
-// waits at input points, isnt actually looping, just transitions from point to point
-// use setTimeout to work in RT if you want too
-
-
-

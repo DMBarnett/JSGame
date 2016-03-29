@@ -117,7 +117,7 @@ function randy(min, max){
 function pickUpItem(player, itemToPickUp){
 	if(itemToPickUp.type === 'monster'){
         console.log("That's not a pygmy that's a monster!  You can't put it in your pocket!");
-        //could I adda  setTimeout() here to pause for a second?
+        //could I add a setTimeout() here to pause for a second?
         return player;
     }
 	player.inventory.push(itemToPickUp);

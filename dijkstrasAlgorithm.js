@@ -34,11 +34,12 @@ function dijkstra(graph, source){
 	return returner;
 }
 
-var output = dijkstra(sampleGraph, 0);
+/*var output = dijkstra(sampleGraph, 0);
 var final = output[0];
 var longestPath = Object.keys(final).reduce(function(a, b){ return final[a] > final[b] ? a : b });
+*/
 
 module.exports = {
 	dijkstra:dijkstra,
-	longestPath:longestPath
+	//longestPath:longestPath
 }
